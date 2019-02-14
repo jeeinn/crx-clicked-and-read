@@ -1,6 +1,10 @@
 'use strict';
 
 (function () {
+    // 读取已设定的延迟结果
+    chrome.storage.sync.get(['time_delay'], function (result) {
+        document.getElementById('time_delay').value = result.time_delay ? result.time_delay : 2;
+    });
 
     let submit = document.getElementById('submit');
     submit.addEventListener('click', function () {
