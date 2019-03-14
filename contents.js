@@ -33,6 +33,9 @@
             setTimeout(function () {
                 let canClick = document.querySelector(".wgt-answers-showbtn");
                 if (canClick) canClick.click();
+
+                canClick = document.querySelector(".wgt-best-showbtn");
+                if (canClick) canClick.click();
             }, timeDelay);
             break;
         default:
