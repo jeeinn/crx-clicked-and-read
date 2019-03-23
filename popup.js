@@ -1,24 +1,27 @@
 'use strict';
 
 (function () {
-    // 读取已设定的延迟结果
-    chrome.storage.sync.get(['time_delay'], function (result) {
-        document.getElementById('time_delay').value = result.time_delay ? result.time_delay : 2;
+    // 读取已设定的延迟结果,单位秒 s
+    chrome.storage.sync.get(['userTimeDelay'], function (result) {
+        let userTimeDelayNode = document.getElementById('time_delay');
+        userTimeDelayNode.value = result.userTimeDelay > 0 ? result.userTimeDelay : 0;
     });
 
+    // 设定用户延迟时间
     let submit = document.getElementById('submit');
     submit.addEventListener('click', function () {
-        let timeDelay = document.getElementById('time_delay').value;
-        let result = document.getElementById('result');
+        let userTimeDelay = document.getElementById('time_delay').value;
+        let setResultNode = document.getElementById('result');
 
-        timeDelay = parseFloat(timeDelay);
-        if (timeDelay < 0) {
-            result.innerHTML = '值不正确！';
+        let isNotNum = !/^\d+$/.test(userTimeDelay);
+        if (isNotNum || userTimeDelay < 0) {
+            setResultNode.innerHTML = '<span style="color: red">输入有误！</span>';
             return false;
         }
+
         // 保存设定的延迟结果
-        chrome.storage.sync.set({time_delay: timeDelay}, function () {
-            result.innerHTML = '设定结果：' + timeDelay + 's';
+        chrome.storage.sync.set({userTimeDelay: userTimeDelay}, function () {
+            setResultNode.innerHTML = '<span style="color: green">设定成功：' + userTimeDelay + 's</span>';
         });
     });
 

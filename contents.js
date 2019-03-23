@@ -2,23 +2,36 @@
 
 'use strict';
 
-(function () {
-    let url = window.location.href;
-    let timeDelay = 0;
-    let timeDelayDefault = 2 * 1000;
-    let removeReadMore = {};
-
-    // 读取设定的延迟结果
-    chrome.storage.sync.get(['time_delay'], function (result) {
-        timeDelay = result.time_delay ? (result.time_delay * 1000) : timeDelayDefault;
+/**
+ * 构造异步函数读取设定的延迟结果
+ * chrome.storage.sync.get 读取用户数据竟然是异步的 -_-||
+ *
+ * @param {number} timeDelayDefault
+ * @returns {Promise<number>}
+ */
+function getUserTimeDelay(timeDelayDefault) {
+    return new Promise(function (resolve, reject) {
+        chrome.storage.sync.get(['userTimeDelay'], function (result) {
+            if (result.userTimeDelay >= 0) {
+                resolve(result.userTimeDelay * 1000);
+            } else {
+                reject(timeDelayDefault);
+            }
+        });
     });
+}
 
-    // 所有具体规则
+(async function () {
+    let url = window.location.href;
+    let timeDelayDefault = 2 * 1000;
+    let removeReadMore = function () {};
+
+    // 所有自动点击的具体规则
     switch (true) {
         // CSDN & ITeye
         case /(http|https):\/\/blog\.csdn\.net\/.*/.test(url):
         case /(http|https):\/\/.*\.iteye\.com\/.*/.test(url):
-            removeReadMore = function (){
+            removeReadMore = function () {
                 let canClick = document.querySelector("#btn-readmore");
                 if (canClick) canClick.click();
             };
@@ -41,14 +54,23 @@
             break;
         // 360doc
         case /(http|https):\/\/.*360doc\.com\/content\/.*/.test(url):
-            removeReadMore = function() {
+            removeReadMore = function () {
                 document.getElementsByTagName('body')[0].classList.remove('articleMaxH');
-                console.log('360doc');
             };
             break;
+
+        // Waiting Your Codes !
+        // case 'xxx':
+        //     break;
+
         default:
+            removeReadMore = function () {};
             break;
     }
-    setTimeout(removeReadMore, timeDelay);
+
+    let timeDelay = await getUserTimeDelay(timeDelayDefault);
+    setTimeout(function () {
+        removeReadMore();
+    }, timeDelay);
 
 })();
