@@ -68,7 +68,7 @@ function getUserTimeDelay(timeDelayDefault) {
                 if(question) question.click();
                 // 第一个回答默认为展开，出于优化这里只点击第二个被折叠的回答
                 let content = document.querySelectorAll(".Button.ContentItem-rightButton.Button--plain");
-                if(content.length>1) content[1].click();
+                if(content && content.length>1) content[1].click();
             };
         break;
 

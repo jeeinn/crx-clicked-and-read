@@ -15,5 +15,8 @@ Automatically click on the web page has 'read more' buttons.
 |   360doc      |   jeeinn  |   2019/3/23   |   2019/3/23   |
 |   知乎问答      |   jeeinn  |   2019/3/27   |   2019/3/27   |
 
-## TODO
-等待你来添加
+## 更新
+* 以后每次更新规则会增加版本号 `x.x.x` 末位+1
+
+## 打赏
+![tip](https://raw.githubusercontent.com/jeeinn/pics/master/alipay-wepay.png)
