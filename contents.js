@@ -42,6 +42,7 @@ function getUserTimeDelay(timeDelayDefault) {
                 if (canClick) canClick.click();
             };
             break;
+
         // 百度知道
         case /(http|https):\/\/zhidao\.baidu\.com\/.*/.test(url):
             removeReadMore = function () {
@@ -52,12 +53,24 @@ function getUserTimeDelay(timeDelayDefault) {
                 if (canClick) canClick.click();
             };
             break;
+
         // 360doc
         case /(http|https):\/\/.*360doc\.com\/content\/.*/.test(url):
             removeReadMore = function () {
                 document.getElementsByTagName('body')[0].classList.remove('articleMaxH');
             };
             break;
+
+        // 知乎问答
+        case /(http|https):\/\/.*zhihu\.com\/question\/.*/.test(url):
+            removeReadMore = function () {
+                let question = document.querySelector(".Button.QuestionRichText-more.Button--plain");
+                if(question) question.click();
+                // 第一个回答默认为展开，出于优化这里只点击第二个被折叠的回答
+                let content = document.querySelectorAll(".Button.ContentItem-rightButton.Button--plain");
+                if(content.length>1) content[1].click();
+            };
+        break;
 
         // Waiting Your Codes !
         // case 'xxx':
