@@ -28,9 +28,10 @@ function getUserTimeDelay(timeDelayDefault) {
 
     // 所有自动点击的具体规则
     switch (true) {
-        // CSDN & ITeye
+        // CSDN & ITeye & yq.aliyun
         case /(http|https):\/\/blog\.csdn\.net\/.*/.test(url):
         case /(http|https):\/\/.*\.iteye\.com\/.*/.test(url):
+        case /(http|https):\/\/yq\.aliyun\.com\/articles\/.*/.test(url):
             removeReadMore = function () {
                 let canClick = document.querySelector("#btn-readmore");
                 if (canClick) canClick.click();
