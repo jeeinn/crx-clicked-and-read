@@ -73,6 +73,14 @@ function getUserTimeDelay(timeDelayDefault) {
             };
         break;
 
+        // 豆瓣，有些文章会有
+        case /(http|https):\/\/.*douban\.com\/note\/.*/.test(url):
+            removeReadMore = function () {
+                let canClick = document.querySelector(".taboola-open-btn");
+                if (canClick) canClick.click();
+            };
+            break;
+
         // Waiting Your Codes !
         // case 'xxx':
         //     break;

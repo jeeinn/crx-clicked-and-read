@@ -15,6 +15,7 @@ Automatically click on the web page has 'read more' buttons.
 |   360doc      |   jeeinn  |   2019/3/23   |   2019/3/23   |
 |   知乎问答      |   jeeinn  |   2019/3/27   |   2019/3/27   |
 |   云栖社区      |   jeeinn  |   2019/6/13   |   2019/6/13   |
+|   豆瓣         |   jeeinn  |   2019/6/17   |   2019/6/17   |
 
 ## 更新
 * 以后每次更新规则会增加版本号 `x.x.x` 末位+1
