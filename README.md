@@ -10,7 +10,7 @@ Automatically click on the web page has 'read more' buttons.
 |   适配网站      |  贡献者    |   添加时间     |   更新时间      |
 |   :---        |   ---     |   :---:       |   ---:        |
 |   百度知道      |  jeeinn   |   2019/1/25   |   2019/3/14   |
-|   CSDN        |   jeeinn  |   2019/1/25   |   2019/3/23   | 
+|   CSDN        |   jeeinn  |   2019/1/25   |   2019/7/1   | 
 |   ITeye       |   jeeinn  |   2019/1/25   |   2019/1/25   |
 |   360doc      |   jeeinn  |   2019/3/23   |   2019/3/23   |
 |   知乎问答      |   jeeinn  |   2019/3/27   |   2019/3/27   |

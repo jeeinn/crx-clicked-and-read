@@ -1,7 +1,7 @@
 {
   "name": "点&阅",
   "description": "自动点击CSDN、百度知道等网页中的点击阅读更多按钮。Automatically click on the web page has 'read more' buttons.",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "manifest_version": 2,
   "update_url": "http://upext.chrome.360.cn/intf.php?method=ExtUpdate.query",
   "icons": {
