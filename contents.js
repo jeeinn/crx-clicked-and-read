@@ -15,7 +15,7 @@ function getUserTimeDelay(timeDelayDefault) {
             if (result.userTimeDelay >= 0) {
                 resolve(result.userTimeDelay * 1000);
             } else {
-                reject(timeDelayDefault);
+                resolve(timeDelayDefault);
             }
         });
     });
