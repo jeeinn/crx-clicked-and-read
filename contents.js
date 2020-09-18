@@ -67,6 +67,20 @@ function getUserTimeDelay(timeDelayDefault) {
                 if (canClick) canClick.click();
             };
             break;
+        // 百度经验
+        case /(http|https):\/\/jingyan\.baidu\.com\/article\/.*/.test(url):
+            removeReadMore = function () {
+                let canClick = document.querySelector(".read-whole-mask");
+                if (canClick) canClick.click();
+            };
+            break;
+        // 百度文库
+        case /(http|https):\/\/wenku\.baidu\.com\/view\/.*/.test(url):
+            removeReadMore = function () {
+                let canClick = document.querySelector(".read-all");
+                if (canClick) canClick.click();
+            };
+            break;
 
         // 360doc
         case /(http|https):\/\/.*360doc\.com\/content\/.*/.test(url):
@@ -101,6 +115,33 @@ function getUserTimeDelay(timeDelayDefault) {
                 let login_mask = document.querySelector(".ui-overlay-mask");
                 if (login_mask) login_mask.click();
                 let canClick = document.querySelector(".taboola-open-btn");
+                if (canClick) canClick.click();
+            };
+            break;
+
+        // 腾讯云社区
+        case /(http|https):\/\/cloud\.tencent\.com\/developer\/article\/\d+/.test(url):
+            removeReadMore = function () {
+                let canClick = document.querySelector(".com-markdown-collpase-hide");
+                if (canClick) {
+                    canClick = canClick.getElementsByTagName('A')[1];
+                    canClick && canClick.click();
+                }
+            };
+            break;
+
+        // 站长之家
+        case /(http|https):\/\/.*chinaz\.com\/.*/.test(url):
+            removeReadMore = function () {
+                let canClick = document.querySelector(".unfoldFullText");
+                if (canClick) canClick.click();
+            };
+            break;
+
+        // b站视频简介
+        case /(http|https):\/\/.*bilibili\.com\/video\/.*/.test(url):
+            removeReadMore = function () {
+                let canClick = document.querySelector(".video-desc .btn");
                 if (canClick) canClick.click();
             };
             break;
