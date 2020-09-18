@@ -13,17 +13,18 @@ function getUserTimeDelay(timeDelayDefault) {
     return new Promise(function (resolve, reject) {
         chrome.storage.sync.get(['userTimeDelay'], function (result) {
             if (result.userTimeDelay >= 0) {
-                resolve(result.userTimeDelay * 1000);
+                result = result.userTimeDelay;
             } else {
-                resolve(timeDelayDefault);
+                result = timeDelayDefault;
             }
+            resolve(result * 1000);
         });
     });
 }
 
 (async function () {
     let url = window.location.href;
-    let timeDelayDefault = 2 * 1000;
+    let timeDelayDefault = 1;// 默认延迟 1s
     let removeReadMore = function () {};
 
     // 所有自动点击的具体规则
