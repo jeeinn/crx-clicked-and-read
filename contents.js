@@ -78,17 +78,28 @@ function getUserTimeDelay(timeDelayDefault) {
         // 知乎问答
         case /(http|https):\/\/.*zhihu\.com\/question\/.*/.test(url):
             removeReadMore = function () {
+                // 自动展开问题
                 let question = document.querySelector(".Button.QuestionRichText-more.Button--plain");
                 if(question) question.click();
                 // 第一个回答默认为展开，出于优化这里只点击第二个被折叠的回答
-                let content = document.querySelectorAll(".Button.ContentItem-rightButton.Button--plain");
+                let content = document.querySelectorAll(".QuestionMainAction");
                 if(content && content.length>1) content[1].click();
+                //去除登录提示
+                let login_modal = document.querySelector(".Modal-closeButton");
+                if (login_modal) login_modal.click();
+                document.querySelector('body').addEventListener('DOMNodeInserted',function(e){
+                    if(e.target.getElementsByClassName('signFlowModal').length!==0){
+                        e.target.getElementsByClassName('Modal-backdrop')[0].click();
+                    }
+                });
             };
         break;
 
         // 豆瓣，有些文章会有
         case /(http|https):\/\/.*douban\.com\/note\/.*/.test(url):
             removeReadMore = function () {
+                let login_mask = document.querySelector(".ui-overlay-mask");
+                if (login_mask) login_mask.click();
                 let canClick = document.querySelector(".taboola-open-btn");
                 if (canClick) canClick.click();
             };
